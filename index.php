@@ -19,8 +19,7 @@
           <ul>
             <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
             <li><a href="#"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li>
-            
+            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
@@ -40,26 +39,22 @@
     }
 ?>
 
-            </span> Nombre de contrats</div>
-            <div><span>14</span> Nombre de contrat en cours</div>
-            <div><span>95</span> Nombre de contrat clôturés</div>
-            <div><span>13 872,33 DH</span> Montant Total</div>
+            </span> Nombre de client</div>
+      
           </div>
         </header>
         <section class="ajouter">
-          <button class="ajouter-button">Ajouter</button>
+         <a href="/addclient.php"><button class="ajouter-button">Ajouter</button></a>
         </section>
         <section class="table-container">
           <table>
             <thead>
               <tr>
-                
                 <th>N° contrat</th>
-                
                 <th>Nom Complet</th>
                 <th>Numrto de Telephone</th>
                 <th>Adress</th>
-              
+                <th>Actions</th> 
               </tr>
             </thead>
             <tbody>
@@ -74,17 +69,17 @@
                       
                             
                            
-                         
+                       
                 ?>
               <tr>
                 <td><?=$row["numeroclient"]?></td>
                 <td><?=$row["nom"]?></td>
                 <td><?=$row["numerotelephone"]?></td>
                 <td><?=$row["adresse"]?></td>
-                
-           
-        
-               
+                <td>
+                <a href="/editclient.php?id=<?=$row["numeroclient"]?>" class="btn-edit">Modifier</a>
+                <a href="/deleteclient.php?id=<?=$row["numeroclient"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">Supprimer</a>
+                </td>
               </tr>
              
              <?php
