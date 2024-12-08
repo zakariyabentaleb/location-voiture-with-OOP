@@ -1,0 +1,126 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 110px;
+    background-color: #1e3a8a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo h1 {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .sidebar nav ul {
+    list-style:none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    margin: 20px 0;
+  }
+ 
+  .sidebar nav ul li a i {
+    color: white;
+    width: 30px;
+  }
+  
+  main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+  }
+  
+  header {
+    margin-bottom: 20px;
+  }
+  
+  header h2 {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .stats div {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .stats span {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #1e3a8a;
+  }
+  
+  .ajouter {
+    margin: 20px 0;
+  }
+  
+  .ajouter-button {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #1e3a8a;
+    color: white;
+  }
+  
+  .status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .status.in-progress {
+    background-color: #ff9800;
+  }
+  
+  .status.clotured {
+    background-color: #4caf50;
+  }
+  
+  .status.factured {
+    background-color: #2196f3;
+  }
+  
