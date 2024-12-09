@@ -57,8 +57,7 @@ if(isset($_POST["nom"],$_POST["numberphone"],$_POST["adresse"])){
   $adresse = $_POST["adresse"];
   $numberphone = $_POST["numberphone"];
   $nom = $_POST["nom"];
-
-
   $stmt= $connection -> prepare("insert into clientt (nom,adresse,numerotelephone) values (?,?,?)");
   $stmt->execute([$nom,$adresse,$numberphone]);
 }
+?>
