@@ -40,7 +40,7 @@
 ?>
 
             </span> Nombre de client</div>
-      
+            <img src="./images/ana.jpg" alt="">
           </div>
         </header>
         <section class="ajouter">
@@ -50,7 +50,7 @@
           <table>
             <thead>
               <tr>
-                <th>N° contrat</th>
+                <th>N° client</th>
                 <th>Nom Complet</th>
                 <th>Numrto de Telephone</th>
                 <th>Adress</th>
@@ -59,17 +59,9 @@
             </thead>
             <tbody>
               <?php
-              
                 $connection = new mysqli("localhost","root","root","societe");
                       $stmt= $connection -> query(" SELECT * FROM clientt ");
-                    
-                      
-                  
-                      while($row=$stmt->fetch_assoc()){
-                      
-                            
-                           
-                       
+                      while($row=$stmt->fetch_assoc()){   
                 ?>
               <tr>
                 <td><?=$row["numeroclient"]?></td>
@@ -77,11 +69,15 @@
                 <td><?=$row["numerotelephone"]?></td>
                 <td><?=$row["adresse"]?></td>
                 <td>
-                <a href="/editclient.php?id=<?=$row["numeroclient"]?>" class="btn-edit">Modifier</a>
-                <a href="/deleteclient.php?id=<?=$row["numeroclient"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">Supprimer</a>
-                </td>
+  <a href="/editclient.php?id=<?=$row["numeroclient"]?>" class="btn-edit">
+    <i class="fa-solid fa-pen"></i> Modifier
+  </a>
+  <a href="/deleteclient.php?id=<?=$row["numeroclient"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+    <i class="fa-solid fa-trash"></i> Supprimer
+  </a>
+</td>
+
               </tr>
-             
              <?php
             }
             ?>
