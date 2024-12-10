@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="fr">
   <head>
     <meta charset="UTF-8">
@@ -19,18 +19,18 @@
           <ul>
             <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
             <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
       <main>
         <header>
-          <h2>Listes des Clients</h2>
+          <h2>Listes des Contrats</h2>
           <div class="stats">
             <div><span>
             <?php
     $connection = new mysqli("localhost","root","root","societe");
-    $stmt= $connection -> query(" SELECT count(*) as totalClient FROM clientt ");
+    $stmt= $connection -> query(" SELECT count(*) as totalClient FROM contrats ");
     if($stmt){
      $result=$stmt->fetch_assoc();
      echo "".$result["totalClient"];
@@ -51,27 +51,30 @@
           <table>
             <thead>
               <tr>
-                <th>Nom Complet</th>
-                <th>Numrto de Telephone</th>
-                <th>Adress</th>
+                <th>numerocontrat</th>
+                <th>datedebut</th>
+                <th>datefin</th>
+                <th>duree</th>
                 <th>Actions</th> 
               </tr>
             </thead>
             <tbody>
               <?php
+             
                 $connection = new mysqli("localhost","root","root","societe");
-                      $stmt= $connection -> query(" SELECT * FROM clientt ");
+                      $stmt= $connection -> query(" SELECT * FROM contrats ");
                       while($row=$stmt->fetch_assoc()){   
                 ?>
               <tr>
-                <td><?=$row["nom"]?></td>
-                <td><?=$row["numerotelephone"]?></td>
-                <td><?=$row["adresse"]?></td>
+                <td><?=$row["numerocontrat"]?></td>
+                <td><?=$row["datedebut"]?></td>
+                <td><?=$row["datefin"]?></td>
+                <td><?=$row["duree"]?></td>
                 <td>
-  <a href="/editclient.php?id=<?=$row["id"]?>" class="btn-edit">
+  <a href="/editcont.php?id=<?=$row["numerocontrat"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> Modifier
   </a>
-  <a href="/deleteclient.php?id=<?=$row["id"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="/deletecont.php?id=<?=$row["numerocontrat"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> Supprimer
   </a>
 </td>
