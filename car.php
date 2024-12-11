@@ -44,7 +44,7 @@
           </div>
         </header>
         <section class="ajouter">
-         <a href="/addclient.php"><button class="ajouter-button">Ajouter</button></a>
+         <a href="/addcar.php"><button class="ajouter-button">Ajouter</button></a>
          <button type="submit" id="print" class="ajouter-button" onclick="printPage()">Print</button>
         </section>
         <section class="table-container">
@@ -71,10 +71,10 @@
                 <td><?=$row["modèle"]?></td>
                 <td><?=$row["année"]?></td>
                 <td>
-  <a href="/editvoiture.php?id=<?=$row["numeromattr"]?>" class="btn-edit">
+  <a href="/editvoiture.php?id=<?=$row["ID"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> Modifier
   </a>
-  <a href="/deletevoiture.php?id=<?=$row["numeromattr"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="/deletevoiture.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> Supprimer
   </a>
 </td>
