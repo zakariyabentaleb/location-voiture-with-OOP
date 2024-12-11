@@ -223,7 +223,7 @@ button:hover, a:hover {
   gap: 10px;
 }
 
-.btn-cancel, .btn-save {
+ .btn-cancel, .btn-save {
   flex: 1;
   padding: 12px;
   font-size: 1rem;
@@ -249,6 +249,7 @@ button:hover, a:hover {
 .btn-save:hover {
   background-color: #27ae60;
 }
+
 
 @media (max-width: 768px) {
   .sidebar {

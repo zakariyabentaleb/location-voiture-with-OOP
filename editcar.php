@@ -8,30 +8,32 @@ if ($connection->connect_error) {
 
 $id = $_GET["id"];
 
-$nom = "";
-$adresse = "";
-$numberphone = "";
+$marque = "";
+$modèle = "";
+$année = "";
+$numeromattr = "";
 
 if ($id > 0 && $_SERVER["REQUEST_METHOD"] === "GET") {
-    $result = $connection->query("SELECT nom, adresse, numerotelephone FROM clientt WHERE id = $id");
+    $result = $connection->query("SELECT marque,modèle,année,numeromattr FROM voiture WHERE id = $id");
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $nom = $row["nom"];
-        $adresse = $row["adresse"];
-        $numberphone = $row["numerotelephone"];
+        $marque = $row["marque"];
+        $modèle = $row["modèle"];
+        $année =  $row["année"] ;
+        $numeromattr =  $row["numeromattr"];
     } else {
-        echo "Aucun client trouvé avec cet ID.";
+        echo "Aucun voiture trouvé avec cet ID.";
     }
 }
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nom = $_POST["nom"];
-    $adresse = $_POST["adresse"];
-    $numberphone = $_POST["numberphone"];
-
-    $connection->query("UPDATE clientt SET nom = '$nom', adresse = '$adresse', numerotelephone = '$numberphone' WHERE id = $id");
-    header("location: /index.php");
+        $marque = $_POST["marque"];
+        $modèle = $_POST["model"];
+        $année = $_POST["annee"] ;
+        $numeromattr = $_POST["numeromattr"];
+    $connection->query("UPDATE voiture SET marque = '$marque', modèle = '$modèle', année = '$année', numeromattr='$numeromattr' WHERE id = $id");
+    header("location: /car.php");
 }
 
 
@@ -71,16 +73,20 @@ $connection->close();
       </header>
       <form class="tarif-form" method="post">
   <div class="form-group">
-    <label for="nom">Nom Complet</label>
-    <input type="text" name="nom"  value="<?php echo $nom ; ?>" required>
+    <label for="numeromattr">numeromattr</label>
+    <input type="text" name="numeromattr" value="<?php echo $numeromattr ; ?>" required>
   </div>
   <div class="form-group">
-    <label for="adresse">Adresse</label>
-    <input type="text" name="adresse"  value="<?php echo $adresse ; ?>" required>
+    <label for="marque">marque</label>
+    <input type="text" name="marque" value="<?php echo $marque ; ?>" required>
   </div>
   <div class="form-group">
-    <label for="numberphone">Numéro de téléphone</label>
-    <input type="text" name="numberphone"  value="<?php echo $numberphone ; ?>" required pattern="[0-9]{10}">
+    <label for="model">model</label>
+    <input type="text" name="model" value="<?php echo $modèle ; ?>" required>
+  </div>
+  <div class="form-group">
+    <label for="annee">annee</label>
+    <input type="number" min="2000" max="2024" name="annee"  value="<?php echo $année ; ?>" required >
   </div>
   <div class="form-buttons">
     <button  class="btn-cancel">Annuler</button>

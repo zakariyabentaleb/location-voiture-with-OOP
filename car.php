@@ -71,7 +71,7 @@
                 <td><?=$row["modèle"]?></td>
                 <td><?=$row["année"]?></td>
                 <td>
-  <a href="/editvoiture.php?id=<?=$row["ID"]?>" class="btn-edit">
+  <a href="/editcar.php?id=<?=$row["ID"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> Modifier
   </a>
   <a href="/deletevoiture.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
