@@ -77,10 +77,10 @@
                 <td><?=$row["duree"]?></td>
                 <td><?=$row["prix"]?></td>
                 <td>
-  <a href="/editcont.php?id=<?=$row["ID"]?>" class="btn-edit">
+  <a href="/editcont.php?id=<?=$row["cID"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> Modifier
   </a>
-  <a href="/deletecont.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="/deletecontrats.php?id=<?=$row["cID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> Supprimer
   </a>
 </td>
