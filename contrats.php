@@ -19,7 +19,7 @@
           <ul>
             <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
             <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
@@ -44,17 +44,20 @@
           </div>
         </header>
         <section class="ajouter">
-         <a href="/addclient.php"><button class="ajouter-button">Ajouter</button></a>
+         <a href="/addcontrats.php"><button class="ajouter-button">Ajouter</button></a>
          <button type="submit" id="print" class="ajouter-button" onclick="printPage()">Print</button>
         </section>
         <section class="table-container">
           <table>
             <thead>
               <tr>
-                <th>numerocontrat</th>
+                <th>ID</th>
+                <th>nom</th>
+                <th>Car_ID</th>
                 <th>datedebut</th>
                 <th>datefin</th>
                 <th>duree</th>
+                <th>prix</th>
                 <th>Actions</th> 
               </tr>
             </thead>
@@ -62,19 +65,22 @@
               <?php
              
                 $connection = new mysqli("localhost","root","root","societe");
-                      $stmt= $connection -> query(" SELECT * FROM contrats ");
+                      $stmt= $connection -> query(" SELECT *, contrats.ID as cID FROM contrats INNER JOIN clientt ON clientt.id=contrats.Client_ID INNER JOIN voiture ON contrats.Car_ID=voiture.ID order by  contrats.ID");
                       while($row=$stmt->fetch_assoc()){   
                 ?>
               <tr>
-                <td><?=$row["numerocontrat"]?></td>
+                <td><?=$row["cID"]?></td>
+                <td><?=$row["nom"]?></td>
+                <td><?=$row["marque"]?></td>
                 <td><?=$row["datedebut"]?></td>
                 <td><?=$row["datefin"]?></td>
                 <td><?=$row["duree"]?></td>
+                <td><?=$row["prix"]?></td>
                 <td>
-  <a href="/editcont.php?id=<?=$row["numerocontrat"]?>" class="btn-edit">
+  <a href="/editcont.php?id=<?=$row["ID"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> Modifier
   </a>
-  <a href="/deletecont.php?id=<?=$row["numerocontrat"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="/deletecont.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> Supprimer
   </a>
 </td>

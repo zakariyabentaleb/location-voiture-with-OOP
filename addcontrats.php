@@ -18,27 +18,57 @@
         <nav>
           <ul>
             <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
+            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
       <main>
       <header>
-        <h2 class="titre">ADD NEW CLIENT</h2>
+        <h2 class="titre">ADD NEW CONTRATS</h2>
       </header>
       <form class="tarif-form" method="post">
   <div class="form-group">
     <label for="nom">Nom Complet</label>
-    <input type="text" name="nom" required>
+    <select name="existing_client" id="existing_client">
+      <option value="" disabled selected>Choisir un client existant</option>
+      <?php
+       $connection = new mysqli("localhost","root","root","societe");
+       $clients = $connection->query("SELECT id, nom FROM clientt");
+       while ($client = $clients->fetch_assoc()) {
+           echo "<option value='{$client['id']}'>{$client['nom']}</option>";
+       }
+      ?>
+    </select>
+  </div> 
+   <div class="form-group">
+    <label for="nom">voiture</label>
+    <select name="existing_voiture" id="existing_voiture">
+      <option value="" disabled selected>Choisir une voiture</option>
+      <?php
+      $connection = new mysqli("localhost","root","root","societe");
+      $cars = $connection->query("SELECT ID, marque FROM voiture");
+      while ($car = $cars->fetch_assoc()) {
+          echo "<option value='{$car['ID']}'>{$car['marque']}</option>";
+      }
+      ?>
+    </select>
+  </div> 
+  <div class="form-group">
+    <label for="date">date debut</label>
+    <input type="date" name="datedebut" required >
   </div>
   <div class="form-group">
-    <label for="adresse">Adresse</label>
-    <input type="text" name="adresse" required>
+    <label for="date">date fin</label>
+    <input type="date" name="datefin" required >
   </div>
   <div class="form-group">
-    <label for="numberphone">Numéro de téléphone</label>
-    <input type="text" name="numberphone" required pattern="[0-9]{10}">
+    <label for="date">duree</label>
+    <input type="number" name="duree" required >
+  </div>
+  <div class="form-group">
+    <label for="prix">prix</label>
+    <input type="number" name="prix" required >
   </div>
   <div class="form-buttons">
     <button type="reset" class="btn-cancel">Annuler</button>
@@ -49,15 +79,16 @@
     </div>
   </body>
   </html>
-
   <?php
-
-$connection = new mysqli("localhost","root","root","societe");
-if(isset($_POST["nom"],$_POST["numberphone"],$_POST["adresse"])){
-  $adresse = $_POST["adresse"];
-  $numberphone = $_POST["numberphone"];
-  $nom = $_POST["nom"];
-  $stmt= $connection -> prepare("insert into clientt (nom,adresse,numerotelephone) values (?,?,?)");
-  $stmt->execute([$nom,$adresse,$numberphone]);
+  $connection = new mysqli("localhost","root","root","societe");
+if(isset($_POST["datedebut"],$_POST["datefin"],$_POST["duree"],$_POST["prix"])){
+  $existing_client=$_POST["existing_client"];
+  $existing_voiture =$_POST["existing_voiture"];
+  $datedebut = $_POST["datedebut"];
+  $datefin = $_POST["datefin"];
+  $duree = $_POST["duree"];
+  $prix = $_POST["prix"];
+  $stmt= $connection -> prepare("insert into contrats (Client_ID,Car_ID,datedebut,datefin,duree,prix) values (?,?,?,?,?,?)");
+  $stmt->execute([$existing_client,$existing_voiture,$datedebut,$datefin,$duree,$prix]);
 }
 ?>
