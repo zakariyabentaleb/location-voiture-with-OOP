@@ -60,8 +60,8 @@ $connection->close();
         <nav>
           <ul>
             <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
+            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>

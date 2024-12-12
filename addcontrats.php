@@ -71,7 +71,7 @@
     <input type="number" name="prix" required >
   </div>
   <div class="form-buttons">
-    <button type="reset" class="btn-cancel">Annuler</button>
+    <button  class="btn-cancel">Annuler</button>
     <button type="submit" class="btn-save">Enregistrer</button>
   </div>
 </form>
