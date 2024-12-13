@@ -69,10 +69,10 @@
                 <td><?=$row["adresse"]?></td>
                 <td>
   <a href="/editclient.php?id=<?=$row["id"]?>" class="btn-edit">
-    <i class="fa-solid fa-pen"></i> Modifier
+    <i class="fa-solid fa-pen"></i> 
   </a>
   <a href="/deleteclient.php?id=<?=$row["id"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
-    <i class="fa-solid fa-trash"></i> Supprimer
+    <i class="fa-solid fa-trash"></i> 
   </a>
 </td>
 
@@ -86,9 +86,16 @@
       </main>
     </div>
   </body>
-  <script>
+  
+  <script >   
     function printPage() {
-        window.print();
-    }
- </script>
+    var divToPrint = document.getElementsByClassName("table-container")[0]; 
+    var newWin = window.open("");
+    newWin.document.write("<html><head><title>Print</title></head><body>");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.document.write("</body></html>");
+    newWin.document.close();
+    newWin.print();
+}
+</script>
   </html>
