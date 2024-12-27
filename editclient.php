@@ -1,19 +1,19 @@
 <?php
 
-$connection = new mysqli("localhost", "root", "azl,kkk!", "societe");
-if ($connection->connect_error) {
-    die("Erreur de connexion : " . $connection->connect_error);
-}
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
 
-
+$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
 $id = $_GET["id"];
+$sql_command_get = "SELECT nom, adresse, numerotelephone FROM clientt WHERE id = {$id}";
+
 
 $nom = "";
 $adresse = "";
 $numberphone = "";
 
 if ($id > 0 && $_SERVER["REQUEST_METHOD"] === "GET") {
-    $result = $connection->query("SELECT nom, adresse, numerotelephone FROM clientt WHERE id = $id");
+    $result = $crud->afficher($sql_command_get);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $nom = $row["nom"];
@@ -29,14 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nom = $_POST["nom"];
     $adresse = $_POST["adresse"];
     $numberphone = $_POST["numberphone"];
-
-    $connection->query("UPDATE clientt SET nom = '$nom', adresse = '$adresse', numerotelephone = '$numberphone' WHERE id = $id");
+    $sql_command_post = "UPDATE clientt SET nom = '{$nom}', adresse = '{$adresse}', numerotelephone = '{$numberphone}' WHERE id = {$id}";
+    // $connection->query("UPDATE clientt SET nom = '$nom', adresse = '$adresse', numerotelephone = '$numberphone' WHERE id = $id");
+    $crud->updateEditClient($id, $nom, $adresse, $numberphone);
     header("location: /index.php");
 }
 
 
 
-$connection->close();
+
 ?>
 
 
