@@ -37,10 +37,13 @@ include_once("./classPhp/Crud.php");
           <div class="stats">
             <div><span>
             <?php
-    $connection = new mysqli("localhost","root","azl,kkk!","societe");
-    $stmt= $connection -> query(" SELECT count(*) as totalClient FROM contrats ");
-    if($stmt){
-     $result=$stmt->fetch_assoc();
+              $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+              $total = $crud->afficher("SELECT count(*) as totalClient FROM clientt;");
+              $result = mysqli_fetch_assoc($total);
+    // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+    // $stmt= $connection -> query(" SELECT count(*) as totalClient FROM clientt ");
+    if($result){
+    //  $result=$stmt->fetch_assoc();
      echo "".$result["totalClient"];
     }else{
       echo "indefined";
@@ -74,7 +77,7 @@ include_once("./classPhp/Crud.php");
              
                 // $connection = new mysqli("localhost","root","azl,kkk!","societe");
                       // $stmt= $connection -> query(" SELECT *, contrats.ID as cID FROM contrats INNER JOIN clientt ON clientt.id=contrats.Client_ID INNER JOIN voiture ON contrats.Car_ID=voiture.ID order by  contrats.ID");
-                      $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+                      // $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
                       // while($row = mysqli_fetch_assoc($crud->afficherListContrats())){   
                         $row = $crud->afficherListContrats();
                         while($line = mysqli_fetch_assoc($row)){
