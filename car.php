@@ -7,7 +7,7 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Contrats de Location - CODE-PARC</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="container">
@@ -17,9 +17,9 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="./index.php"><i class="fa-solid fa-user"></i></a></li>
+            <li><a href="./car.php"><i class="fa-solid fa-car"></i></a></li>
+            <li><a href="./contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
@@ -29,7 +29,7 @@
           <div class="stats">
             <div><span>
             <?php
-    $connection = new mysqli("localhost","root","root","societe");
+    $connection = new mysqli("localhost","root","azl,kkk!","societe");
     $stmt= $connection -> query(" SELECT count(*) as totalClient1 FROM voiture ");
     if($stmt){
      $result=$stmt->fetch_assoc();
@@ -44,7 +44,7 @@
           </div>
         </header>
         <section class="ajouter">
-         <a href="/addcar.php"><button class="ajouter-button">Ajouter</button></a>
+         <a href="./addcar.php"><button class="ajouter-button">Ajouter</button></a>
          <button type="submit" id="print" class="ajouter-button" onclick="printPage()">Print</button>
         </section>
         <section class="table-container">
@@ -61,7 +61,7 @@
             <tbody>
               <?php
              
-                $connection = new mysqli("localhost","root","root","societe");
+                $connection = new mysqli("localhost","root","azl,kkk!","societe");
                       $stmt= $connection -> query(" SELECT * FROM voiture ");
                       while($row=$stmt->fetch_assoc()){   
                 ?>
@@ -71,10 +71,10 @@
                 <td><?=$row["modèle"]?></td>
                 <td><?=$row["année"]?></td>
                 <td>
-  <a href="/editcar.php?id=<?=$row["ID"]?>" class="btn-edit">
+  <a href="./editcar.php?id=<?=$row["ID"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> 
   </a>
-  <a href="/deletevoiture.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="./deletevoiture.php?id=<?=$row["ID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> 
   </a>
 </td>

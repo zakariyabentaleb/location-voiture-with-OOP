@@ -1,3 +1,13 @@
+  <?php
+  include_once("./classPhp/Connection.php");
+  include_once("./classPhp/Crud.php");
+
+  $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+  $sql_command = "SELECT * FROM clientt;";
+  $totalClient = $crud->afficher($sql_command);
+
+
+  ?>
   <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -7,7 +17,7 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Contrats de Location - CODE-PARC</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="container">
@@ -17,9 +27,9 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="./index.php"><i class="fa-solid fa-user"></i></a></li>
+            <li><a href="./car.php"><i class="fa-solid fa-car"></i></a></li>
+            <li><a href="./contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
@@ -29,7 +39,7 @@
           <div class="stats">
             <div><span>
             <?php
-    $connection = new mysqli("localhost","root","root","societe");
+    $connection = new mysqli("localhost","root","azl,kkk!","societe");
     $stmt= $connection -> query(" SELECT count(*) as totalClient FROM clientt ");
     if($stmt){
      $result=$stmt->fetch_assoc();
@@ -44,7 +54,7 @@
           </div>
         </header>
         <section class="ajouter">
-         <a href="/addclient.php"><button class="ajouter-button">Ajouter</button></a>
+         <a href="./addclient.php"><button class="ajouter-button">Ajouter</button></a>
          <button type="submit" id="print" class="ajouter-button" onclick="printPage()">Print</button>
         </section>
         <section class="table-container">
@@ -58,28 +68,27 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-                $connection = new mysqli("localhost","root","root","societe");
-                      $stmt= $connection -> query(" SELECT * FROM clientt ");
-                      while($row=$stmt->fetch_assoc()){   
-                ?>
+
+                
+                <?php      while($row = mysqli_fetch_assoc($totalClient)):   ?>
+                
               <tr>
                 <td><?=$row["nom"]?></td>
                 <td><?=$row["numerotelephone"]?></td>
                 <td><?=$row["adresse"]?></td>
                 <td>
-  <a href="/editclient.php?id=<?=$row["id"]?>" class="btn-edit">
+  <a href="./editclient.php?id=<?=$row["id"]?>" class="btn-edit">
     <i class="fa-solid fa-pen"></i> 
   </a>
-  <a href="/deleteclient.php?id=<?=$row["id"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="./deleteclient.php?id=<?=$row["id"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> 
   </a>
 </td>
 
               </tr>
-             <?php
-            }
-            ?>
+             
+            
+            <?php endwhile; ?>
             </tbody>
           </table>
         </section>

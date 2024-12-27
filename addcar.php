@@ -7,7 +7,7 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Contrats de Location - CODE-PARC</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="container">
@@ -17,9 +17,9 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/index.php"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="/car.php"><i class="fa-solid fa-car"></i></a></li>
-            <li><a href="/contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
+            <li><a href="./index.php"><i class="fa-solid fa-user"></i></a></li>
+            <li><a href="./car.php"><i class="fa-solid fa-car"></i></a></li>
+            <li><a href="./contrats.php"><i class="fa-solid fa-file-contract"></i></a></li> 
           </ul>
         </nav>
       </aside>
@@ -56,7 +56,7 @@
 
   <?php
 
-$connection = new mysqli("localhost","root","root","societe");
+$connection = new mysqli("localhost","root","azl,kkk!","societe");
 if(isset($_POST["numeromattr"],$_POST["marque"],$_POST["model"],$_POST["annee"])){
   $numeromattr= $_POST["numeromattr"];
   $marque = $_POST["marque"];
