@@ -1,3 +1,11 @@
+<?php
+
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+
+?>
+
 <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -64,21 +72,27 @@
             <tbody>
               <?php
              
-                $connection = new mysqli("localhost","root","azl,kkk!","societe");
-                      $stmt= $connection -> query(" SELECT *, contrats.ID as cID FROM contrats INNER JOIN clientt ON clientt.id=contrats.Client_ID INNER JOIN voiture ON contrats.Car_ID=voiture.ID order by  contrats.ID");
-                      while($row=$stmt->fetch_assoc()){   
+                // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+                      // $stmt= $connection -> query(" SELECT *, contrats.ID as cID FROM contrats INNER JOIN clientt ON clientt.id=contrats.Client_ID INNER JOIN voiture ON contrats.Car_ID=voiture.ID order by  contrats.ID");
+                      $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+                      // while($row = mysqli_fetch_assoc($crud->afficherListContrats())){   
+                        $row = $crud->afficherListContrats();
+                        while($line = mysqli_fetch_assoc($row)){
+                          
+                          
+                        
                 ?>
               <tr>
-                <td><?=$row["cID"]?></td>
-                <td><?=$row["nom"]?></td>
-                <td><?=$row["marque"]?></td>
-                <td><?=$row["datedebut"]?></td>
-                <td><?=$row["datefin"]?></td>
-                <td><?=$row["duree"]?></td>
-                <td><?=$row["prix"]?></td>
+                <td><?=$line["cID"]?></td>
+                <td><?=$line["nom"]?></td>
+                <td><?=$line["marque"]?></td>
+                <td><?=$line["datedebut"]?></td>
+                <td><?=$line["datefin"]?></td>
+                <td><?=$line["duree"]?></td>
+                <td><?=$line["prix"]?></td>
                 <td>
   
-  <a href="./deletecontrats.php?id=<?=$row["cID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+  <a href="./deletecontrats.php?id=<?=$line["cID"]?>" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
     <i class="fa-solid fa-trash"></i> 
   </a>
 </td>

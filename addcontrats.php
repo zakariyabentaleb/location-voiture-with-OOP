@@ -1,3 +1,10 @@
+<?php
+
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+?>
+
 <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -33,10 +40,12 @@
     <select name="existing_client" id="existing_client">
       <option value="" disabled selected>Choisir un client existant</option>
       <?php
-       $connection = new mysqli("localhost","root","azl,kkk!","societe");
-       $clients = $connection->query("SELECT id, nom FROM clientt");
-       while ($client = $clients->fetch_assoc()) {
-           echo "<option value='{$client['id']}'>{$client['nom']}</option>";
+      //  $connection = new mysqli("localhost","root","azl,kkk!","societe");
+      // $clients = $connection->query("SELECT id, nom FROM clientt");
+      $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+      $client = $crud->afficher("SELECT id, nom FROM clientt;");
+       while ($clients = $client->fetch_assoc()) {
+           echo "<option value='{$clients['id']}'>{$clients['nom']}</option>";
        }
       ?>
     </select>
@@ -46,8 +55,9 @@
     <select name="existing_voiture" id="existing_voiture">
       <option value="" disabled selected>Choisir une voiture</option>
       <?php
-      $connection = new mysqli("localhost","root","azl,kkk!","societe");
-      $cars = $connection->query("SELECT ID, marque FROM voiture");
+      // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+      // $cars = $connection->query("SELECT ID, marque FROM voiture");
+      $cars = $crud->afficher("SELECT ID, marque FROM voiture;");
       while ($car = $cars->fetch_assoc()) {
           echo "<option value='{$car['ID']}'>{$car['marque']}</option>";
       }
@@ -80,7 +90,7 @@
   </body>
   </html>
   <?php
-  $connection = new mysqli("localhost","root","azl,kkk!","societe");
+  // $connection = new mysqli("localhost","root","azl,kkk!","societe");
 if(isset($_POST["datedebut"],$_POST["datefin"],$_POST["duree"],$_POST["prix"])){
   $existing_client=$_POST["existing_client"];
   $existing_voiture =$_POST["existing_voiture"];
@@ -88,7 +98,8 @@ if(isset($_POST["datedebut"],$_POST["datefin"],$_POST["duree"],$_POST["prix"])){
   $datefin = $_POST["datefin"];
   $duree = $_POST["duree"];
   $prix = $_POST["prix"];
-  $stmt= $connection -> prepare("insert into contrats (Client_ID,Car_ID,datedebut,datefin,duree,prix) values (?,?,?,?,?,?)");
-  $stmt->execute([$existing_client,$existing_voiture,$datedebut,$datefin,$duree,$prix]);
+  // $stmt= $connection -> prepare("insert into contrats (Client_ID,Car_ID,datedebut,datefin,duree,prix) values (?,?,?,?,?,?)");
+  // $stmt->execute([$existing_client,$existing_voiture,$datedebut,$datefin,$duree,$prix]);
+  $crud->addContrat($existing_client, $existing_voiture, $datedebut, $datefin, $duree, $prix);
 }
 ?>

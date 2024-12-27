@@ -1,3 +1,12 @@
+<?php
+
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+
+?>
+
+
 <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -52,12 +61,15 @@
 
   <?php
 
-$connection = new mysqli("localhost","root","azl,kkk!","societe");
+// $connection = new mysqli("localhost","root","azl,kkk!","societe");
+
+$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
 if(isset($_POST["nom"],$_POST["numberphone"],$_POST["adresse"])){
   $adresse = $_POST["adresse"];
   $numberphone = $_POST["numberphone"];
   $nom = $_POST["nom"];
-  $stmt= $connection -> prepare("insert into clientt (nom,adresse,numerotelephone) values (?,?,?)");
-  $stmt->execute([$nom,$adresse,$numberphone]);
+  // $stmt= $connection -> prepare("insert into clientt (nom,adresse,numerotelephone) values (?,?,?)");
+  // $stmt->execute([$nom,$adresse,$numberphone]);
+  $crud->addClient($adresse, $numberphone, $nom);
 }
 ?>

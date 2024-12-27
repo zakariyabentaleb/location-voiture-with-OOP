@@ -39,10 +39,12 @@
           <div class="stats">
             <div><span>
             <?php
-    $connection = new mysqli("localhost","root","azl,kkk!","societe");
-    $stmt= $connection -> query(" SELECT count(*) as totalClient FROM clientt ");
-    if($stmt){
-     $result=$stmt->fetch_assoc();
+              $total = $crud->afficher("SELECT count(*) as totalClient FROM clientt;");
+              $result = mysqli_fetch_assoc($total);
+    // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+    // $stmt= $connection -> query(" SELECT count(*) as totalClient FROM clientt ");
+    if($result){
+    //  $result=$stmt->fetch_assoc();
      echo "".$result["totalClient"];
     }else{
       echo "indefined";

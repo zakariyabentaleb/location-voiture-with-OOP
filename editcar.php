@@ -1,9 +1,9 @@
 <?php
 
-$connection = new mysqli("localhost", "root", "azl,kkk!", "societe");
-if ($connection->connect_error) {
-    die("Erreur de connexion : " . $connection->connect_error);
-}
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
 
 
 $id = $_GET["id"];
@@ -14,7 +14,7 @@ $année = "";
 $numeromattr = "";
 
 if ($id > 0 && $_SERVER["REQUEST_METHOD"] === "GET") {
-    $result = $connection->query("SELECT marque,modèle,année,numeromattr FROM voiture WHERE id = $id");
+    $result = $crud->afficherEditCar($id);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $marque = $row["marque"];
@@ -29,16 +29,17 @@ if ($id > 0 && $_SERVER["REQUEST_METHOD"] === "GET") {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $marque = $_POST["marque"];
-        $modèle = $_POST["model"];
-        $année = $_POST["annee"] ;
+        $modele = $_POST["model"];
+        $annee = $_POST["annee"] ;
         $numeromattr = $_POST["numeromattr"];
-    $connection->query("UPDATE voiture SET marque = '$marque', modèle = '$modèle', année = '$année', numeromattr='$numeromattr' WHERE id = $id");
+        $crud->updateEditCar($id, $marque, $modele, $annee, $numeromattr);
+    // $connection->query("UPDATE voiture SET marque = '$marque', modèle = '$modèle', année = '$année', numeromattr='$numeromattr' WHERE id = $id");
     header("location: /car.php");
 }
 
 
 
-$connection->close();
+
 ?>
 
 

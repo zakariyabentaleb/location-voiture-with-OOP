@@ -1,3 +1,12 @@
+<?php
+
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+?>
+
+
+
 <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -56,13 +65,16 @@
 
   <?php
 
-$connection = new mysqli("localhost","root","azl,kkk!","societe");
+// $connection = new mysqli("localhost","root","azl,kkk!","societe");
+$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
 if(isset($_POST["numeromattr"],$_POST["marque"],$_POST["model"],$_POST["annee"])){
   $numeromattr= $_POST["numeromattr"];
   $marque = $_POST["marque"];
   $model = $_POST["model"];
   $annee = $_POST["annee"];
-  $stmt= $connection -> prepare("insert into voiture (numeromattr,marque,modèle,année) values (?,?,?,?)");
-  $stmt->execute([ $numeromattr,$marque,$model,$annee]);
+  // $stmt= $connection -> prepare("insert into voiture (numeromattr,marque,modèle,année) values (?,?,?,?)");
+  // $stmt->execute([ $numeromattr,$marque,$model,$annee]);
+  $crud->addCar($numeromattr, $marque, $model, $annee);
+  echo "entreee";
 }
 ?>

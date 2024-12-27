@@ -1,3 +1,10 @@
+<?php
+
+include_once("./classPhp/Connection.php");
+include_once("./classPhp/Crud.php");
+
+?>
+
 <!DOCTYPE html>
   <html lang="fr">
   <head>
@@ -29,10 +36,12 @@
           <div class="stats">
             <div><span>
             <?php
-    $connection = new mysqli("localhost","root","azl,kkk!","societe");
-    $stmt= $connection -> query(" SELECT count(*) as totalClient1 FROM voiture ");
-    if($stmt){
-     $result=$stmt->fetch_assoc();
+    // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+    // $stmt= $connection -> query(" SELECT count(*) as totalClient1 FROM voiture ");
+    $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+    $result = $crud->afficher("SELECT count(*) as totalClient1 FROM voiture");
+    if($result){
+     $result=$result->fetch_assoc();
      echo "".$result["totalClient1"];
     }else{
       echo "indefined";
@@ -61,9 +70,10 @@
             <tbody>
               <?php
              
-                $connection = new mysqli("localhost","root","azl,kkk!","societe");
-                      $stmt= $connection -> query(" SELECT * FROM voiture ");
-                      while($row=$stmt->fetch_assoc()){   
+                // $connection = new mysqli("localhost","root","azl,kkk!","societe");
+                //       $stmt= $connection -> query(" SELECT * FROM voiture ");
+                      $result = $crud->afficher("SELECT * FROM voiture;");
+                      while($row=$result->fetch_assoc()){   
                 ?>
               <tr>
                 <td><?=$row["numeromattr"]?></td>
