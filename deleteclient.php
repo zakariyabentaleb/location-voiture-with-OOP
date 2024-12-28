@@ -9,7 +9,7 @@ if( isset($_GET["id"])){
     $table = "clientt";
     // $connection = new mysqli("localhost","root","azl,kkk!","societe");
     // $stmt= $connection -> query(" DELETE FROM clientt WHERE id =$id ; ");
-    $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+    $crud = new Crud("localhost", "root", "root", "societe");
     $crud->delete($id, $table);
    header("location: ./index.php");
 } 

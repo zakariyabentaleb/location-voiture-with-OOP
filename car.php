@@ -38,7 +38,7 @@ include_once("./classPhp/Crud.php");
             <?php
     // $connection = new mysqli("localhost","root","azl,kkk!","societe");
     // $stmt= $connection -> query(" SELECT count(*) as totalClient1 FROM voiture ");
-    $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+    $crud = new Crud("localhost", "root", "root", "societe");
     $result = $crud->afficher("SELECT count(*) as totalClient1 FROM voiture");
     if($result){
      $result=$result->fetch_assoc();

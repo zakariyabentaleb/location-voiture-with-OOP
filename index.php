@@ -2,7 +2,7 @@
   include_once("./classPhp/Connection.php");
   include_once("./classPhp/Crud.php");
 
-  $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+  $crud = new Crud("localhost", "root", "root", "societe");
   $sql_command = "SELECT * FROM clientt;";
   $totalClient = $crud->afficher($sql_command);
 

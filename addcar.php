@@ -66,7 +66,7 @@ include_once("./classPhp/Crud.php");
   <?php
 
 // $connection = new mysqli("localhost","root","azl,kkk!","societe");
-$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+$crud = new Crud("localhost", "root", "root", "societe");
 if(isset($_POST["numeromattr"],$_POST["marque"],$_POST["model"],$_POST["annee"])){
   $numeromattr= $_POST["numeromattr"];
   $marque = $_POST["marque"];

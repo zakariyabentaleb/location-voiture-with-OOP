@@ -8,7 +8,7 @@ if( isset($_GET["id"])){
     $table = "voiture";
     // $connection = new mysqli("localhost","root","azl,kkk!","societe");
     // $stmt= $connection -> query(" DELETE FROM voiture WHERE id =$id ; ");
-    $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+    $crud = new Crud("localhost", "root", "root", "societe");
     $crud->delete($id, $table);
    header("location: /car.php");
 } 

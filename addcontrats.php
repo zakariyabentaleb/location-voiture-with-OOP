@@ -42,7 +42,7 @@ include_once("./classPhp/Crud.php");
       <?php
       //  $connection = new mysqli("localhost","root","azl,kkk!","societe");
       // $clients = $connection->query("SELECT id, nom FROM clientt");
-      $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+      $crud = new Crud("localhost", "root", "root", "societe");
       $client = $crud->afficher("SELECT id, nom FROM clientt;");
        while ($clients = $client->fetch_assoc()) {
            echo "<option value='{$clients['id']}'>{$clients['nom']}</option>";

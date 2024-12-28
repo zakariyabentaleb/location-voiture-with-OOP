@@ -37,7 +37,7 @@ include_once("./classPhp/Crud.php");
           <div class="stats">
             <div><span>
             <?php
-              $crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+                $crud = new Crud("localhost", "root", "root", "societe");
               $total = $crud->afficher("SELECT count(*) as totalClient FROM clientt;");
               $result = mysqli_fetch_assoc($total);
     // $connection = new mysqli("localhost","root","azl,kkk!","societe");

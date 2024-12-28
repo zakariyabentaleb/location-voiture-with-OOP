@@ -3,7 +3,7 @@
 class Connection{
     protected $server = "localhost";
     protected $user = "root";
-    protected $password = "azl,kkk!";
+    protected $password = "root";
     protected $database = "societe";
     protected $connection;
 

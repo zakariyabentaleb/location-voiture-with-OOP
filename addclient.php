@@ -63,7 +63,7 @@ include_once("./classPhp/Crud.php");
 
 // $connection = new mysqli("localhost","root","azl,kkk!","societe");
 
-$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+$crud = new Crud("localhost", "root", "root", "societe");
 if(isset($_POST["nom"],$_POST["numberphone"],$_POST["adresse"])){
   $adresse = $_POST["adresse"];
   $numberphone = $_POST["numberphone"];

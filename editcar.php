@@ -3,7 +3,7 @@
 include_once("./classPhp/Connection.php");
 include_once("./classPhp/Crud.php");
 
-$crud = new Crud("localhost", "root", "azl,kkk!", "societe");
+$crud = new Crud("localhost", "root", "root", "societe");
 
 
 $id = $_GET["id"];
