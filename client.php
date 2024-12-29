@@ -1,4 +1,12 @@
 <?php
+session_start();
+if ($_SESSION["role"] !== "client") {
+    header("Location: /index.php");
+    exit();
+}
+?>
+
+<?php
 
 include_once("./classPhp/Connection.php");
 include_once("./classPhp/Crud.php");
