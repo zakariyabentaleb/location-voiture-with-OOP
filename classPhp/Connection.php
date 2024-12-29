@@ -5,13 +5,17 @@ class Connection{
     protected $user = "root";
     protected $password = "root";
     protected $database = "societe";
-    protected $connection;
+   public $connection;
+    public $conn; 
 
     
     public function __construct($server, $user, $password, $database){
         $this->connection = mysqli_connect($server, $user, $password, $database);
 
     }
-
+    
+    public function getConnection() {
+        return $this->conn;
+    }
     
 }
