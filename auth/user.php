@@ -29,6 +29,28 @@ class User {
         }
         return false;
     }
+    public function reserver($car_id, $user_id) {
+        // Vérifiez si la voiture est déjà réservée
+        $sql = "SELECT id FROM reservations WHERE car_id = ? AND status IN ('pending', 'confirmed')";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $car_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result->num_rows === 0) { // Si aucune réservation n'existe
+            // Enregistrez la réservation
+            $sql = "INSERT INTO reservations (user_id, car_id, start_date, end_date, status)
+                    VALUES (?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 'pending')";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("ii", $user_id, $car_id);
+    
+            if ($stmt->execute()) {
+                return true; // Réservation réussie
+            }
+        }
+        return false; // La voiture est déjà réservée ou une erreur est survenue
+    }
+    
 }
 ?>
 

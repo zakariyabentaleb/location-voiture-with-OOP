@@ -30,7 +30,7 @@ if ($user->login($email, $password)) {
         header("Location: /index.php"); // Redirige vers l'index
         exit();
     } else {
-        echo "Vous n'avez pas les permissions nécessaires.";
+        header("Location: /client.php");
     }
 } else {
     echo "Email ou mot de passe incorrect.";
